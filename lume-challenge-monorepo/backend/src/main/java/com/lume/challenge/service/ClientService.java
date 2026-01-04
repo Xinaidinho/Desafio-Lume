@@ -123,10 +123,10 @@ public class ClientService {
 
     var addr = viaCepClient.lookup(c.getCep());
 
-    if (isBlank(c.getLogradouro())) c.setLogradouro(addr.logradouro());
-    if (isBlank(c.getBairro())) c.setBairro(addr.bairro());
-    if (isBlank(c.getCidade())) c.setCidade(addr.cidade());
-    if (isBlank(c.getUf())) c.setUf(addr.uf());
+    c.setLogradouro(addr.logradouro());
+    c.setBairro(addr.bairro());
+    c.setCidade(addr.cidade());
+    c.setUf(addr.uf().toUpperCase());
   }
 
   private void validateAddressComplete(Client c) {
