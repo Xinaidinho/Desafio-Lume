@@ -20,7 +20,7 @@ import ClientFormDialog from "../components/ClientFormDialog";
 export default function ClientsPage() {
   const { logout } = useAuth();
 
-  const [cepQuery, setCepQuery] = useState("");
+  const [cpfQuery, setCpfQuery] = useState("");
   const [nameQuery, setNameQuery] = useState("");
   const [rows, setRows] = useState<Client[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export default function ClientsPage() {
     setLoading(true);
     try {
       const data = await clientApi.list({
-        cep: cepQuery || undefined,
+        cpf: cpfQuery || undefined,
         name: nameQuery || undefined
       });
       setRows(data);
@@ -134,9 +134,9 @@ export default function ClientsPage() {
 
       <Stack direction={{ xs: "column", md: "row" }} spacing={2} sx={{ mb: 2 }}>
         <TextField
-          label="Buscar por CEP"
-          value={cepQuery}
-          onChange={(e) => setCepQuery(e.target.value.replace(/\D/g, ""))}
+          label="Buscar por CPF"
+          value={cpfQuery}
+          onChange={(e) => setCpfQuery(e.target.value.replace(/\D/g, ""))}
           fullWidth
         />
         <TextField

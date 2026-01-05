@@ -16,7 +16,7 @@ export type Client = {
 export type ClientRequest = Omit<Client, "id">;
 
 export const clientApi = {
-  async list(params?: { cep?: string; name?: string }): Promise<Client[]> {
+  async list(params?: { cpf?: string; name?: string }): Promise<Client[]> {
     const res = await http.get("/clients", { params });
     return res.data;
   },

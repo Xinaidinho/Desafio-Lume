@@ -43,24 +43,24 @@ public class ClientService {
   }
 
   @Transactional(readOnly = true)
-  public List<ClientDtos.ClientResponse> list(String cepQuery, String nameQuery) {
-    String cep = digitsOnly(cepQuery);
+  public List<ClientDtos.ClientResponse> list(String cpfQuery, String nameQuery) {
+    String cpf = digitsOnly(cpfQuery);
     String name = trim(nameQuery);
 
-    if (isBlank(cep) && isBlank(name)) {
+    if (isBlank(cpf) && isBlank(name)) {
       return clientRepository.findAll().stream().map(this::toResponse).toList();
     }
 
-    if (!isBlank(cep) && !isBlank(name)) {
+    if (!isBlank(cpf) && !isBlank(name)) {
       return clientRepository
-          .findByCepContainingAndNameContainingIgnoreCase(cep, name)
+          .findByCpfContainingAndNameContainingIgnoreCase(cpf, name)
           .stream()
           .map(this::toResponse)
           .toList();
     }
 
-    if (!isBlank(cep)) {
-      return clientRepository.findByCepContaining(cep).stream().map(this::toResponse).toList();
+    if (!isBlank(cpf)) {
+      return clientRepository.findByCpfContaining(cpf).stream().map(this::toResponse).toList();
     }
 
     return clientRepository.findByNameContainingIgnoreCase(name).stream().map(this::toResponse).toList();

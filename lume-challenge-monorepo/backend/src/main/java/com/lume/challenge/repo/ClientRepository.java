@@ -8,9 +8,9 @@ import java.util.List;
 public interface ClientRepository extends JpaRepository<Client, Long> {
   List<Client> findByNameContainingIgnoreCase(String namePart);
 
-  List<Client> findByCepContaining(String cep);
+  List<Client> findByCpfContaining(String cpf);
 
-  List<Client> findByCepContainingAndNameContainingIgnoreCase(String cep, String namePart);
+  List<Client> findByCpfContainingAndNameContainingIgnoreCase(String cpf, String namePart);
 
   boolean existsByCpf(String cpf);
 }
